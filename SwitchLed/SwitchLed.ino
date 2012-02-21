@@ -1,3 +1,6 @@
+/* Use a switch to control a LED.
+  Details and schematic, please see http://yehnan.blogspot.com/2012/02/arduinoled.html
+*/
 static int ledStatus;
 static unsigned long lastDebounceTime;
 #define DEBOUNCE_DELAY 200

@@ -1,3 +1,6 @@
+/* Use a switch to control a LED.
+  Details and schematic, please see http://yehnan.blogspot.com/2012/02/arduinoled.html
+*/
 #include <Bounce.h>
 
 Bounce bouncer = Bounce(2, 50);
