@@ -202,12 +202,12 @@ OBJ = $(SRC:.c=.o) $(CXXSRC:.cpp=.o) $(ASRC:.S=.o)
 PROJOBJ = $(PROJSRC:.c=.o) $(PROJCXXSRC:.cpp=.o) $(PROJASRC:.S=.o)
 
 COREOBJ = $(CORESRC:.c=.o) $(CORECXXSRC:.cpp=.o) $(COREASRC:.S=.o)
-core.a: $(COREOBJ)
-	$(AR) rcs core.a $(COREOBJ)
+$(ARDUINO)/core.a: $(COREOBJ)
+	$(AR) rcs $(ARDUINO)/core.a $(COREOBJ)
 
 # Link: create ELF output file from object files.
-$(TARGET).elf: $(PROJOBJ) core.a 
-	$(CC) $(ALL_CFLAGS) $(PROJOBJ) core.a -lm --output $@ $(LDFLAGS)
+$(TARGET).elf: $(PROJOBJ) $(ARDUINO)/core.a 
+	$(CC) $(ALL_CFLAGS) $(PROJOBJ) $(ARDUINO)/core.a -lm --output $@ $(LDFLAGS)
 
 # Compile: create object files from C++ source files.
 .cpp.o:
@@ -232,7 +232,7 @@ $(TARGET).elf: $(PROJOBJ) core.a
 # Target: clean project.
 clean:
 	$(REMOVE) $(TARGET).hex $(TARGET).eep $(TARGET).cof $(TARGET).elf \
-	$(TARGET).map $(TARGET).sym $(TARGET).lss core.a \
+	$(TARGET).map $(TARGET).sym $(TARGET).lss $(ARDUINO)/core.a \
 	$(OBJ) $(LST) $(SRC:.c=.s) $(SRC:.c=.d) $(CXXSRC:.cpp=.s) $(CXXSRC:.cpp=.d)
 
 depend:
@@ -245,5 +245,7 @@ depend:
 	echo '# DO NOT DELETE THIS LINE -- make depend depends on it.' \
 		>> $(MAKEFILE); \
 	$(CC) -M -mmcu=$(MCU) $(CDEFS) $(CINCS) $(SRC) $(ASRC) >> $(MAKEFILE)
+	$(CXX) -M -mmcu=$(MCU) $(CXXDEFS) $(CXXINCS) $(CXXSRC) $(ASRC) >> $(MAKEFILE)
 
 .PHONY:	all build elf hex eep lss sym program coff extcoff clean depend
+
