@@ -221,6 +221,7 @@ ARFLAGS = rcs
 LST = $(ASRC:.S=.lst) $(CXXSRC:.cpp=.lst) $(SRC:.c=.lst)
 
 # Default target.
+# @avr-size $(PROJECT).elf
 all: build
 
 build: elf hex eep
