@@ -143,14 +143,16 @@ CORECXXSRC := $(filter %.cpp, $(CORESOURCE))
 
 #
 BUILTINLIB_DIRS = $(foreach dir, $(BUILTINLIB_ENABLED), $(BUILTINLIB)/$(dir))
-BUILTINLIB_DIRS += $(foreach dir, $(BUILTINLIB_ENABLED), $(shell test -d $(BUILTINLIB)/$(dir)/utility && echo $(BUILTINLIB)/$(dir)/utility))
+#BUILTINLIB_DIRS += $(foreach dir, $(BUILTINLIB_ENABLED), $(shell test -d $(BUILTINLIB)/$(dir)/utility && echo $(BUILTINLIB)/$(dir)/utility))
+BUILTINLIB_DIRS += $(patsubst %/.,%,$(wildcard $(foreach dir, $(BUILTINLIB_ENABLED), $(BUILTINLIB)/$(dir)/utility/.)))
 
 BUILTINLIB_SRC = $(foreach path, $(BUILTINLIB_DIRS), $(wildcard $(path)/*.c))
 BUILTINLIB_CXXSRC = $(foreach path, $(BUILTINLIB_DIRS), $(wildcard $(path)/*.cpp))
 
 #
 THIRDPARTYLIB_DIRS = $(foreach dir, $(THIRDPARTYLIB_ENABLED), $(THIRDPARTYLIB)/$(dir))
-THIRDPARTYLIB_DIRS += $(foreach dir, $(THIRDPARTYLIB_ENABLED), $(shell test -d $(THIRDPARTYLIB)/$(dir)/utility && echo $(THIRDPARTYLIB)/$(dir)/utility))
+#THIRDPARTYLIB_DIRS += $(foreach dir, $(THIRDPARTYLIB_ENABLED), $(shell test -d $(THIRDPARTYLIB)/$(dir)/utility && echo $(THIRDPARTYLIB)/$(dir)/utility))
+THIRDPARTYLIB_DIRS += $(patsubst %/.,%,$(wildcard $(foreach dir, $(THIRDPARTYLIB_ENABLED), $(THIRDPARTYLIB)/$(dir)/utility/.)))
 
 THIRDPARTYLIB_SRC = $(foreach path, $(THIRDPARTYLIB_DIRS), $(wildcard $(path)/*.c))
 THIRDPARTYLIB_CXXSRC = $(foreach path, $(THIRDPARTYLIB_DIRS), $(wildcard $(path)/*.cpp))
