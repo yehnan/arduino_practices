@@ -1,0 +1,8 @@
+Use Raspberry Pi(and Debian) to write a LED blinking sketch for Arduino.
+
+use
+$ sudo apt-get install arduino arduino-mk
+to install software environment.
+
+And use the files here as example.
+
