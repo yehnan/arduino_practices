@@ -66,7 +66,15 @@ void serialEvent()
       pf("Wrong\n");
       break;
   }
-  setTime(h, m, s, d, M, y);
+  //setTime(h, m, s, d, M, y);
+  tmElements_t tm;
+  tm.Year = y - 1970;
+  tm.Month = M;
+  tm.Day = d;
+  tm.Hour = h;
+  tm.Minute = m;
+  tm.Second = s;
+  RTC.set(makeTime(tm));
 }
 
 
