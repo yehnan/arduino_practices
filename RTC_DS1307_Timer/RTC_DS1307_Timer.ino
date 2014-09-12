@@ -33,10 +33,16 @@ void setup()  {
   len = 0;
 }
 
+// from Serial Monitor to set date and time
+// example:
+// y2014
+// M9       append a SPACE character at end
+// d21      append a SPACE character at end
+// h15      append a SPACE character at end
+// m26      append a SPACE character at end
+// s27      append a SPACE character at end
 void loop()
 {
-  //pf("%d/%d/%d %02d:%02d:%02d\n", year(), month(), day(), hour(), minute(), second()); 
-  //delay(1000);
   t.update();
 }
 
