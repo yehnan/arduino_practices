@@ -355,3 +355,5 @@ depend:
 
 .PHONY:	all build upload elf hex eep lss sym coff extcoff clean mostlyclean depend
 
+# DO NOT DELETE THIS LINE -- make depend depends on it.
+
